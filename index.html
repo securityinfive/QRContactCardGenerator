@@ -80,8 +80,12 @@
     <h1>vCard QR Code Generator</h1>
     <form id="vcard-form">
       <div class="form-group">
-        <label for="fullname">Full Name</label>
-        <input type="text" id="fullname" placeholder="John Doe" required />
+        <label for="firstname">First Name</label>
+        <input type="text" id="firstname" placeholder="John" required />
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text" id="lastname" placeholder="Doe" required />
       </div>
       <div class="form-group">
         <label for="org">Organization</label>
@@ -128,7 +132,7 @@
         <input type="text" id="country" placeholder="Country" />
       </div>
       <div class="form-group">
-        <label for="note">Note</label>
+        <label for="note">Note</nsp;
         <textarea id="note" rows="3" placeholder="Any additional info..."></textarea>
       </div>
       <div class="button-group">
@@ -146,7 +150,8 @@
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const fullname = document.getElementById('fullname').value.trim();
+      const first = document.getElementById('firstname').value.trim();
+      const last = document.getElementById('lastname').value.trim();
       const org = document.getElementById('org').value.trim();
       const jobTitle = document.getElementById('title').value.trim();
       const mobile = document.getElementById('mobile').value.trim();
@@ -160,13 +165,14 @@
       const country = document.getElementById('country').value.trim();
       const note = document.getElementById('note').value.trim();
 
-      const adr = [ '', '', street, city, state, zip, country ].join(';');
+      const adr = ['', '', street, city, state, zip, country].join(';');
       const vCardLines = [
         'BEGIN:VCARD',
         'VERSION:3.0',
-        `FN:${fullname}`,
+        `N:${last};${first}`,
+        `FN:${first} ${last}`,
         org ? `ORG:${org}` : '',
-        jobTitle ? `TITLE:${jobTitle}` : '',
+        Title ? `TITLE:${jobTitle}` : '',
         mobile ? `TEL;TYPE=CELL:${mobile}` : '',
         work ? `TEL;TYPE=WORK:${work}` : '',
         email ? `EMAIL:${email}` : '',
