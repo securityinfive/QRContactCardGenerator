@@ -35,7 +35,7 @@
       margin-bottom: 5px;
       font-weight: bold;
     }
-    input {
+    input, textarea {
       width: 100%;
       padding: 8px;
       border: 1px solid #ccc;
@@ -92,8 +92,12 @@
         <input type="text" id="title" placeholder="Software Engineer" />
       </div>
       <div class="form-group">
-        <label for="phone">Phone</label>
-        <input type="tel" id="phone" placeholder="+1 555-123-4567" />
+        <label for="mobile">Mobile Phone</label>
+        <input type="tel" id="mobile" placeholder="+1 555-123-4567" />
+      </div>
+      <div class="form-group">
+        <label for="work">Work Phone</label>
+        <input type="tel" id="work" placeholder="+1 555-987-6543" />
       </div>
       <div class="form-group">
         <label for="email">Email</label>
@@ -104,8 +108,28 @@
         <input type="url" id="url" placeholder="https://example.com" />
       </div>
       <div class="form-group">
-        <label for="address">Address</label>
-        <input type="text" id="address" placeholder="123 Main St, City, Country" />
+        <label for="street">Street</label>
+        <input type="text" id="street" placeholder="123 Main St" />
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="city" placeholder="City" />
+      </div>
+      <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" id="state" placeholder="State" />
+      </div>
+      <div class="form-group">
+        <label for="zip">Zip Code</label>
+        <input type="text" id="zip" placeholder="Postal Code" />
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" id="country" placeholder="Country" />
+      </div>
+      <div class="form-group">
+        <label for="note">Note</label>
+        <textarea id="note" rows="3" placeholder="Any additional info..."></textarea>
       </div>
       <div class="button-group">
         <button type="submit">Generate QR Code</button>
@@ -125,21 +149,30 @@
       const fullname = document.getElementById('fullname').value.trim();
       const org = document.getElementById('org').value.trim();
       const jobTitle = document.getElementById('title').value.trim();
-      const phone = document.getElementById('phone').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const work = document.getElementById('work').value.trim();
       const email = document.getElementById('email').value.trim();
       const url = document.getElementById('url').value.trim();
-      const address = document.getElementById('address').value.trim();
+      const street = document.getElementById('street').value.trim();
+      const city = document.getElementById('city').value.trim();
+      const state = document.getElementById('state').value.trim();
+      const zip = document.getElementById('zip').value.trim();
+      const country = document.getElementById('country').value.trim();
+      const note = document.getElementById('note').value.trim();
 
+      const adr = [ '', '', street, city, state, zip, country ].join(';');
       const vCardLines = [
         'BEGIN:VCARD',
         'VERSION:3.0',
         `FN:${fullname}`,
         org ? `ORG:${org}` : '',
         jobTitle ? `TITLE:${jobTitle}` : '',
-        phone ? `TEL:${phone}` : '',
+        mobile ? `TEL;TYPE=CELL:${mobile}` : '',
+        work ? `TEL;TYPE=WORK:${work}` : '',
         email ? `EMAIL:${email}` : '',
         url ? `URL:${url}` : '',
-        address ? `ADR:${address}` : '',
+        (street || city || state || zip || country) ? `ADR:${adr}` : '',
+        note ? `NOTE:${note}` : '',
         'END:VCARD'
       ].filter(Boolean).join('\n');
 
