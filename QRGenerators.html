@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>QR Code Generator</title>
+  <title>QR & URL Toolset</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -26,6 +26,8 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       flex: 1;
+      display: flex;
+      flex-direction: column;
     }
     h1 {
       text-align: center;
@@ -74,9 +76,10 @@
     .clear-btn:hover {
       background: #5a6268;
     }
-    .qrcode {
+    .qrcode, .result {
       margin-top: 20px;
       text-align: center;
+      word-break: break-all;
     }
   </style>
 </head>
@@ -86,90 +89,48 @@
     <div class="container">
       <h1>vCard QR Code</h1>
       <form id="vcard-form">
-        <div class="form-group">
-          <label for="firstname">First Name</label>
-          <input type="text" id="firstname" placeholder="John" required />
-        </div>
-        <div class="form-group">
-          <label for="lastname">Last Name</label>
-          <input type="text" id="lastname" placeholder="Doe" required />
-        </div>
-        <div class="form-group">
-          <label for="org">Organization</label>
-          <input type="text" id="org" placeholder="Company Inc." />
-        </div>
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" id="title" placeholder="Software Engineer" />
-        </div>
-        <div class="form-group">
-          <label for="mobile">Mobile Phone</label>
-          <input type="tel" id="mobile" placeholder="+1 555-123-4567" />
-        </div>
-        <div class="form-group">
-          <label for="work">Work Phone</label>
-          <input type="tel" id="work" placeholder="+1 555-987-6543" />
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="john.doe@example.com" />
-        </div>
-        <div class="form-group">
-          <label for="url">Website</label>
-          <input type="url" id="url" placeholder="https://example.com" />
-        </div>
-        <div class="form-group">
-          <label for="street">Street</label>
-          <input type="text" id="street" placeholder="123 Main St" />
-        </div>
-        <div class="form-group">
-          <label for="city">City</label>
-          <input type="text" id="city" placeholder="City" />
-        </div>
-        <div class="form-group">
-          <label for="state">State</label>
-          <input type="text" id="state" placeholder="State" />
-        </div>
-        <div class="form-group">
-          <label for="zip">Zip Code</label>
-          <input type="text" id="zip" placeholder="Postal Code" />
-        </div>
-        <div class="form-group">
-          <label for="country">Country</label>
-          <input type="text" id="country" placeholder="Country" />
-        </div>
-        <div class="form-group">
-          <label for="note">Note</label>
-          <textarea id="note" rows="3" placeholder="Any additional info..."></textarea>
-        </div>
-        <div class="button-group">
-          <button type="submit">Generate</button>
-          <button type="button" class="clear-btn" id="clear-vcard-btn">Clear</button>
-        </div>
+        <!-- fields... -->
+        <div class="form-group"><label for="firstname">First Name</label><input type="text" id="firstname" placeholder="John" required /></div>
+        <div class="form-group"><label for="lastname">Last Name</label><input type="text" id="lastname" placeholder="Doe" required /></div>
+        <div class="form-group"><label for="org">Organization</label><input type="text" id="org" placeholder="Company Inc." /></div>
+        <div class="form-group"><label for="title">Title</label><input type="text" id="title" placeholder="Software Engineer" /></div>
+        <div class="form-group"><label for="mobile">Mobile Phone</label><input type="tel" id="mobile" placeholder="+1 555-123-4567" /></div>
+        <div class="form-group"><label for="work">Work Phone</label><input type="tel" id="work" placeholder="+1 555-987-6543" /></div>
+        <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="john.doe@example.com" /></div>
+        <div class="form-group"><label for="url">Website</label><input type="url" id="url" placeholder="https://example.com" /></div>
+        <div class="form-group"><label for="street">Street</label><input type="text" id="street" placeholder="123 Main St" /></div>
+        <div class="form-group"><label for="city">City</label><input type="text" id="city" placeholder="City" /></div>
+        <div class="form-group"><label for="state">State</label><input type="text" id="state" placeholder="State" /></div>
+        <div class="form-group"><label for="zip">Zip Code</label><input type="text" id="zip" placeholder="Postal Code" /></div>
+        <div class="form-group"><label for="country">Country</label><input type="text" id="country" placeholder="Country" /></div>
+        <div class="form-group"><label for="note">Note</label><textarea id="note" rows="3" placeholder="Any additional info..."></textarea></div>
+        <div class="button-group"><button type="submit">Generate</button><button type="button" class="clear-btn" id="clear-vcard-btn">Clear</button></div>
       </form>
       <div id="vcard-qrcode" class="qrcode"></div>
     </div>
 
-    <!-- Website QR Code Generator -->
+    <!-- Website & Shortener -->
     <div class="container">
-      <h1>Website QR Code</h1>
+      <h1>Website QR & Shortener</h1>
+      <!-- QR Code -->
       <form id="url-form">
-        <div class="form-group">
-          <label for="website-url">URL</label>
-          <input type="url" id="website-url" placeholder="https://example.com" required />
-        </div>
-        <div class="button-group">
-          <button type="submit">Generate</button>
-          <button type="button" class="clear-btn" id="clear-url-btn">Clear</button>
-        </div>
+        <div class="form-group"><label for="website-url">URL</label><input type="url" id="website-url" placeholder="https://example.com" required /></div>
+        <div class="button-group"><button type="submit">Generate QR</button><button type="button" class="clear-btn" id="clear-url-btn">Clear</button></div>
       </form>
       <div id="url-qrcode" class="qrcode"></div>
+
+      <!-- URL Shortener -->
+      <form id="shortener-form">
+        <div class="form-group"><label for="long-url">Long URL</label><input type="url" id="long-url" placeholder="https://example.com/very/long/url" required /></div>
+        <div class="button-group"><button type="submit">Shorten URL</button><button type="button" class="clear-btn" id="clear-shortener-btn">Clear</button></div>
+      </form>
+      <div id="shortener-result" class="result"></div>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    // vCard QR generator
+    // vCard generator omitted for brevity (unchanged)
     const vcardForm = document.getElementById('vcard-form');
     const vcardContainer = document.getElementById('vcard-qrcode');
     vcardForm.addEventListener('submit', function(e) {
@@ -221,6 +182,29 @@
     });
     document.getElementById('clear-url-btn').addEventListener('click', function() {
       urlForm.reset(); urlContainer.innerHTML = '';
+    });
+
+    // URL Shortener
+    const shortForm = document.getElementById('shortener-form');
+    const shortContainer = document.getElementById('shortener-result');
+    shortForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const longUrl = document.getElementById('long-url').value.trim();
+      shortContainer.textContent = 'Generating...';
+      try {
+        const res = await fetch(`https://is.gd/create.php?format=json&url=${encodeURIComponent(longUrl)}`);
+        const data = await res.json();
+        if (data.shorturl) {
+          shortContainer.innerHTML = `<a href="${data.shorturl}" target="_blank">${data.shorturl}</a>`;
+        } else {
+          shortContainer.textContent = 'Error: ' + (data.errormessage || 'Unable to shorten URL');
+        }
+      } catch (err) {
+        shortContainer.textContent = 'Network error. Try again.';
+      }
+    });
+    document.getElementById('clear-shortener-btn').addEventListener('click', function() {
+      shortForm.reset(); shortContainer.innerHTML = '';
     });
   </script>
 </body>
