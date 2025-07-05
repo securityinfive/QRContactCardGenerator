@@ -153,7 +153,6 @@
       const first = document.getElementById('firstname').value.trim();
       const last = document.getElementById('lastname').value.trim();
       const org = document.getElementById('org').value.trim();
-      const jobTitle = document.getElementById('title').value.trim();
       const mobile = document.getElementById('mobile').value.trim();
       const work = document.getElementById('work').value.trim();
       const email = document.getElementById('email').value.trim();
@@ -172,7 +171,6 @@
         `N:${last};${first}`,
         `FN:${first} ${last}`,
         org ? `ORG:${org}` : '',
-        jobTitle ? `TITLE:${jobTitle}` : '',
         mobile ? `TEL;TYPE=CELL:${mobile}` : '',
         work ? `TEL;TYPE=WORK:${work}` : '',
         email ? `EMAIL:${email}` : '',
