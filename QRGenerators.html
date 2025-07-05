@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>QR & URL Toolset</title>
+  <title>QR & URL Toolset</nsp;>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -109,22 +109,22 @@
       <div id="vcard-qrcode" class="qrcode"></div>
     </div>
 
-    <!-- Website & Shortener -->
+    <!-- URL Shortener & Website QR Generator -->
     <div class="container">
-      <h1>Website QR & Shortener</h1>
-      <!-- QR Code -->
-      <form id="url-form">
-        <div class="form-group"><label for="website-url">URL</label><input type="url" id="website-url" placeholder="https://example.com" required /></div>
-        <div class="button-group"><button type="submit">Generate QR</button><button type="button" class="clear-btn" id="clear-url-btn">Clear</button></div>
-      </form>
-      <div id="url-qrcode" class="qrcode"></div>
-
+      <h1>URL Shortener & QR Code</h1>
       <!-- URL Shortener -->
       <form id="shortener-form">
         <div class="form-group"><label for="long-url">Long URL</label><input type="url" id="long-url" placeholder="https://example.com/very/long/url" required /></div>
         <div class="button-group"><button type="submit">Shorten URL</button><button type="button" class="clear-btn" id="clear-shortener-btn">Clear</button></div>
       </form>
       <div id="shortener-result" class="result"></div>
+
+      <!-- Website QR Code Generator -->
+      <form id="url-form">
+        <div class="form-group"><label for="website-url">URL</label><input type="url" id="website-url" placeholder="https://example.com" required /></div>
+        <div class="button-group"><button type="submit">Generate QR</button><button type="button" class="clear-btn" id="clear-url-btn">Clear</button></div>
+      </form>
+      <div id="url-qrcode" class="qrcode"></div>
     </div>
   </div>
 
@@ -171,19 +171,6 @@
       vcardForm.reset(); vcardContainer.innerHTML = '';
     });
 
-    // URL QR generator
-    const urlForm = document.getElementById('url-form');
-    const urlContainer = document.getElementById('url-qrcode');
-    urlForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const websiteUrl = document.getElementById('website-url').value.trim();
-      urlContainer.innerHTML = '';
-      new QRCode(urlContainer, { text: websiteUrl, width: 256, height: 256 });
-    });
-    document.getElementById('clear-url-btn').addEventListener('click', function() {
-      urlForm.reset(); urlContainer.innerHTML = '';
-    });
-
     // URL Shortener
     const shortForm = document.getElementById('shortener-form');
     const shortContainer = document.getElementById('shortener-result');
@@ -204,7 +191,20 @@
       }
     });
     document.getElementById('clear-shortener-btn').addEventListener('click', function() {
-      shortForm.reset(); shortContainer.innerHTML = '';
+      document.getElementById('shortener-form').reset(); shortContainer.innerHTML = '';
+    });
+
+    // Website QR generator
+    const urlForm = document.getElementById('url-form');
+    const urlContainer = document.getElementById('url-qrcode');
+    urlForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const websiteUrl = document.getElementById('website-url').value.trim();
+      urlContainer.innerHTML = '';
+      new QRCode(urlContainer, { text: websiteUrl, width: 256, height: 256 });
+    });
+    document.getElementById('clear-url-btn').addEventListener('click', function() {
+      document.getElementById('url-form').reset(); urlContainer.innerHTML = '';
     });
   </script>
 </body>
