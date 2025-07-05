@@ -92,7 +92,6 @@
         <div class="form-group"><label for="firstname">First Name</label><input type="text" id="firstname" placeholder="John" required></div>
         <div class="form-group"><label for="lastname">Last Name</label><input type="text" id="lastname" placeholder="Doe" required></div>
         <div class="form-group"><label for="org">Organization</label><input type="text" id="org" placeholder="Company Inc."></div>
-        <div class="form-group"><label for="title">Title</label><input type="text" id="title" placeholder="Software Engineer"></div>
         <div class="form-group"><label for="mobile">Mobile Phone</label><input type="tel" id="mobile" placeholder="+1 555-123-4567"></div>
         <div class="form-group"><label for="work">Work Phone</label><input type="tel" id="work" placeholder="+1 555-987-6543"></div>
         <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="john.doe@example.com"></div>
@@ -137,7 +136,6 @@
       const first = document.getElementById('firstname').value.trim();
       const last = document.getElementById('lastname').value.trim();
       const org = document.getElementById('org').value.trim();
-      const jobTitle = document.getElementById('title').value.trim();
       const mobile = document.getElementById('mobile').value.trim();
       const work = document.getElementById('work').value.trim();
       const email = document.getElementById('email').value.trim();
@@ -154,7 +152,6 @@
         `N:${last};${first}`,
         `FN:${first} ${last}`,
         org ? `ORG:${org}` : '',
-        jobTitle ? `TITLE:${jobTitle}` : '',
         mobile ? `TEL;TYPE=CELL:${mobile}` : '',
         work ? `TEL;TYPE=WORK:${work}` : '',
         email ? `EMAIL:${email}` : '',
